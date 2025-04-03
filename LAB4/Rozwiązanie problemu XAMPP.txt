@@ -1,0 +1,13 @@
+https://stackoverflow.com/questions/40829393/error-in-starting-mysql-in-xampp
+
+First: Close Xampp.
+
+Second: Go to \xampp\mysql\backup.
+
+Third: Copy all files in directory except ibdata1.
+
+Fourth: Go to \xampp\mysql\data.
+
+Fifth: Paste the files that you copied from \xampp\mysql\ backup (Replace the files when asked).
+
+Sixth: Start Xampp.
