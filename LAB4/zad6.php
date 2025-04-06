@@ -3,17 +3,20 @@ print_r($_REQUEST);
 print('<br>');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { // Sprawdzenie metody HTTP
+    // Pobranie wartości z formularza
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $offer_type = htmlspecialchars(trim($_POST['offer_type']), ENT_QUOTES, 'UTF-8');
+    $budget = floatval($_POST['budget']); // Zamiana na liczbę
+    $comment = htmlspecialchars(trim($_POST['comment']), ENT_QUOTES, 'UTF-8');
 
     // Sprawdzenie, czy wszystkie wymagane pola są ustawione
     if (!isset($_POST['email'], $_POST['offer_type'], $_POST['budget'], $_POST['comment'])) {
         die("Błąd: Brak wymaganych pól formularza.<br>");
     }
 
-    // Pobranie wartości z formularza
-    $email = trim($_POST['email']);
-    $offer_type = trim($_POST['offer_type']);
-    $budget = trim($_POST['budget']);
-    $comment = trim($_POST['comment']);
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        die("Nieprawidlowy adres email");
+    }
 
     // Dane do połączenia z bazą
     $servername = "localhost";
